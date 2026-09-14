@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate, useSearchParams } from "react-router-dom";
+import { plans } from "../../data/pricing";
 import { Button } from "../../components/ui/Button";
 import { Field, Input } from "../../components/ui/Field";
 import { useAuth } from "../../store/AuthContext";
@@ -65,8 +66,8 @@ export function LoginPage() {
       </div>
       <p className="mt-6 text-center text-sm text-slate">
         New to Bookly?{" "}
-        <Link to="/register" className="text-teal">
-          Get started
+        <Link to="/#pricing" className="text-teal">
+          Pick a plan
         </Link>
       </p>
       <p className="mt-4 text-center text-xs text-slate">
@@ -79,6 +80,9 @@ export function LoginPage() {
 export function RegisterPage() {
   const { register } = useAuth();
   const nav = useNavigate();
+  const [params] = useSearchParams();
+  const planId = params.get("plan") ?? "";
+  const plan = plans.find((p) => p.id === planId);
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -103,7 +107,22 @@ export function RegisterPage() {
   return (
     <div>
       <h1 className="text-2xl font-semibold text-navy">Create your organisation</h1>
-      <p className="mt-1 text-sm text-slate">Start a Bookly workspace in minutes.</p>
+      {plan ? (
+        <p className="mt-1 text-sm text-slate">
+          {plan.name} · ${plan.monthly}/mo billed monthly ·{" "}
+          <Link to="/#pricing" className="text-teal">
+            Change plan
+          </Link>
+        </p>
+      ) : (
+        <p className="mt-1 text-sm text-slate">
+          Start from a plan on the{" "}
+          <Link to="/#pricing" className="text-teal">
+            home page
+          </Link>
+          .
+        </p>
+      )}
       <form
         className="mt-6 space-y-4"
         onSubmit={async (e) => {
@@ -111,6 +130,7 @@ export function RegisterPage() {
           if (form.password.length < 8) return;
           setBusy(true);
           await register({ name: form.name, email: form.email, orgName: form.orgName });
+          if (plan) sessionStorage.setItem("bookly.plan", plan.name);
           nav("/onboarding");
         }}
       >

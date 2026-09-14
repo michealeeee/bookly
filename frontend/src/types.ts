@@ -235,7 +235,6 @@ export interface Plan {
   tagline: string;
   audience: string;
   monthly: number;
-  yearly: number;
   popular?: boolean;
   highlight?: string;
   cta: string;

@@ -1,26 +1,46 @@
 import { useEffect, useState } from "react";
-import { Link, NavLink, Outlet, useLocation } from "react-router-dom";
+import { Link, NavLink, Outlet, useLocation, useNavigate } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { Logo } from "../brand/Logo";
 import { Button } from "../ui/Button";
+import { useAuth } from "../../store/AuthContext";
 
 const links = [
-  { to: "/features", label: "Features" },
-  { to: "/solutions", label: "Solutions" },
-  { to: "/how-it-works", label: "How It Works" },
-  { to: "/pricing", label: "Pricing" },
-  { to: "/resources", label: "Resources" },
-  { to: "/faq", label: "FAQ" },
+  { to: "/", label: "Home", end: true },
+  { to: "/features", label: "Product" },
+  { to: "/#pricing", label: "Pricing" },
 ];
 
+function goToPricing(navigate: ReturnType<typeof useNavigate>, pathname: string) {
+  if (pathname === "/") {
+    navigate({ pathname: "/", hash: "pricing" }, { replace: false });
+    window.requestAnimationFrame(() => {
+      document.getElementById("pricing")?.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+    return;
+  }
+  navigate({ pathname: "/", hash: "pricing" });
+}
+
 export function PublicLayout() {
+  const { user } = useAuth();
   const [open, setOpen] = useState(false);
   const loc = useLocation();
+  const navigate = useNavigate();
   const home = loc.pathname === "/";
 
   useEffect(() => {
     setOpen(false);
   }, [loc.pathname]);
+
+  useEffect(() => {
+    const id = loc.hash.replace("#", "");
+    if (!id) return;
+    const t = window.setTimeout(() => {
+      document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 80);
+    return () => window.clearTimeout(t);
+  }, [loc.hash, loc.pathname]);
 
   return (
     <div className={home ? "min-h-dvh bg-navy text-white" : "min-h-dvh bg-paper text-ink"}>
@@ -34,21 +54,34 @@ export function PublicLayout() {
               <NavLink
                 key={l.to}
                 to={l.to}
-                className={({ isActive }) =>
-                  `whitespace-nowrap text-xs lg:text-sm ${isActive ? "text-white" : "text-white/70 hover:text-white"}`
-                }
+                end={l.end}
+                className={() => {
+                  const onPricing = l.to.includes("#pricing") && loc.hash === "#pricing";
+                  const onHome = l.to === "/" && loc.pathname === "/" && loc.hash !== "#pricing";
+                  const onProduct = l.to === "/features" && loc.pathname === "/features";
+                  const on = onPricing || onHome || onProduct;
+                  return `whitespace-nowrap text-sm ${on ? "text-white" : "text-white/60 hover:text-white"}`;
+                }}
               >
                 {l.label}
               </NavLink>
             ))}
           </nav>
           <div className="hidden shrink-0 items-center gap-2 md:flex">
-            <Link to="/login" className="px-2 text-xs text-white/80 hover:text-white lg:px-3 lg:text-sm">
-              Log In
+            <Link
+              to={user ? "/app/dashboard" : "/login"}
+              className="px-2 text-sm text-white/70 hover:text-white lg:px-3"
+            >
+              Dashboard
             </Link>
-            <Link to="/register">
-              <Button size="sm">Get Started</Button>
-            </Link>
+            {!user && (
+              <Link to="/login" className="px-2 text-sm text-white/70 hover:text-white lg:px-3">
+                Log in
+              </Link>
+            )}
+            <Button size="sm" type="button" onClick={() => goToPricing(navigate, loc.pathname)}>
+              Get Started
+            </Button>
           </div>
           <button
             className="grid h-11 w-11 place-items-center rounded-xl text-white md:hidden"
@@ -66,15 +99,29 @@ export function PublicLayout() {
                 {l.label}
               </Link>
             ))}
+            <Link to={user ? "/app/dashboard" : "/login"} className="block py-3 text-base text-white/80">
+              Dashboard
+            </Link>
             <div className="mt-4 flex flex-col gap-2 sm:flex-row">
-              <Link to="/login" className="flex-1">
-                <Button variant="outline" className="w-full">
-                  Log In
+              {!user && (
+                <Link to="/login" className="flex-1">
+                  <Button variant="outline" className="w-full">
+                    Log in
+                  </Button>
+                </Link>
+              )}
+              <div className="flex-1">
+                <Button
+                  className="w-full"
+                  type="button"
+                  onClick={() => {
+                    setOpen(false);
+                    goToPricing(navigate, loc.pathname);
+                  }}
+                >
+                  Get Started
                 </Button>
-              </Link>
-              <Link to="/register" className="flex-1">
-                <Button className="w-full">Get Started</Button>
-              </Link>
+              </div>
             </div>
           </div>
         )}
@@ -88,10 +135,13 @@ export function PublicLayout() {
           </div>
           <div>
             <p className="text-sm font-semibold text-white">Product</p>
+            <Link to="/" className="mt-2 block py-1 text-sm">
+              Landing page
+            </Link>
             <Link to="/features" className="mt-2 block py-1 text-sm">
               Features
             </Link>
-            <Link to="/pricing" className="mt-2 block py-1 text-sm">
+            <Link to="/#pricing" className="mt-2 block py-1 text-sm">
               Pricing
             </Link>
             <Link to="/how-it-works" className="mt-2 block py-1 text-sm">
@@ -112,8 +162,11 @@ export function PublicLayout() {
           </div>
           <div>
             <p className="text-sm font-semibold text-white">Get started</p>
-            <Link to="/register" className="mt-2 block py-1 text-sm">
-              Create organisation
+            <Link to="/app/dashboard" className="mt-2 block py-1 text-sm">
+              Dashboard
+            </Link>
+            <Link to="/#pricing" className="mt-2 block py-1 text-sm">
+              Choose a plan
             </Link>
             <Link to="/login" className="mt-2 block py-1 text-sm">
               Log in

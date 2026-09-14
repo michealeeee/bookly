@@ -3,11 +3,11 @@ import { faqs, resources } from "../../data/seed";
 
 export function FeaturesPage() {
   return (
-    <MarketingPage kicker="Features" title="A complete finance operating system" lead="From first invoice to year-end reports.">
-      <p className="text-slate">
-        Bookly unifies bookkeeping, sales, purchasing, expenses, banking, tax and audit. Every module shares the same
-        chart of accounts and organisation profile — so numbers stay consistent across the product.
-      </p>
+    <MarketingPage title="Four things. Done well." lead="Books, invoices, banking, reports. The rest stays out of the way until you need it.">
+      <div className="max-w-xl space-y-8 text-slate">
+        <p>Bookly is built so a finance lead can open the app and know the cash position in under a minute.</p>
+        <p>Every invoice, bill and bank line posts to the same ledger. No extra products to stitch together.</p>
+      </div>
     </MarketingPage>
   );
 }

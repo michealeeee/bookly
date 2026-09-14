@@ -1,59 +1,21 @@
 import { Link } from "react-router-dom";
 import { Check, Sparkles } from "lucide-react";
-import { billing, plans, yearlySave } from "../../data/pricing";
+import { billing, plans } from "../../data/pricing";
 import { Button } from "../ui/Button";
-import { cn } from "../../lib/cn";
-
-export function BillingToggle({
-  yearly,
-  onChange,
-}: {
-  yearly: boolean;
-  onChange: (yearly: boolean) => void;
-}) {
-  return (
-    <div className="flex flex-col items-center gap-3">
-      <div className="inline-flex max-w-full flex-wrap justify-center rounded-full bg-white p-1 shadow-sm ring-1 ring-line">
-        <button
-          type="button"
-          className={cn("rounded-full px-4 py-2 text-sm font-medium sm:px-5", !yearly ? "bg-navy text-white" : "text-slate")}
-          onClick={() => onChange(false)}
-        >
-          Monthly
-        </button>
-        <button
-          type="button"
-          className={cn("rounded-full px-4 py-2 text-sm font-medium sm:px-5", yearly ? "bg-navy text-white" : "text-slate")}
-          onClick={() => onChange(true)}
-        >
-          Yearly
-          <span className="ml-2 rounded-full bg-teal/15 px-2 py-0.5 text-xs text-teal-2">Save {billing.yearlyDiscountPct}%</span>
-        </button>
-      </div>
-      <p className="px-4 text-center text-sm text-slate">
-        {billing.trialDays}-day free trial on paid plans · billed in {billing.currency}
-      </p>
-    </div>
-  );
-}
 
 export function PlanGrid({
-  yearly,
   currentPlan,
   onSelect,
   registerTo = "/register",
 }: {
-  yearly: boolean;
   currentPlan?: string;
   onSelect?: (planName: string) => void;
   registerTo?: string;
 }) {
   return (
-    <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-4">
+    <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
       {plans.map((p) => {
-        const price = yearly ? p.yearly : p.monthly;
         const current = currentPlan === p.name;
-        const save = yearlySave(p);
         return (
           <article
             key={p.id}
@@ -69,20 +31,13 @@ export function PlanGrid({
             <h3 className="mt-2 text-2xl font-semibold text-navy">{p.name}</h3>
             <p className="mt-2 text-sm leading-relaxed text-slate sm:min-h-[3.2rem]">{p.tagline}</p>
             <div className="mt-5">
-              {p.monthly === 0 ? (
-                <p className="text-3xl font-semibold text-navy">Let’s talk</p>
-              ) : (
-                <>
-                  <p className="flex items-baseline gap-1">
-                    <span className="text-4xl font-semibold tracking-tight text-navy num">${price}</span>
-                    <span className="text-sm text-slate">/ month</span>
-                  </p>
-                  {yearly && save > 0 && (
-                    <p className="mt-1 text-xs font-medium text-gain">Save ${save} a year vs monthly</p>
-                  )}
-                  {!yearly && <p className="mt-1 text-xs text-slate">${p.yearly}/mo if billed yearly</p>}
-                </>
-              )}
+              <p className="flex items-baseline gap-1">
+                <span className="text-4xl font-semibold tracking-tight text-navy num">${p.monthly}</span>
+                <span className="text-sm text-slate">/ month</span>
+              </p>
+              <p className="mt-1 text-xs text-slate">
+                {billing.trialDays}-day free trial · billed monthly in {billing.currency}
+              </p>
             </div>
             <ul className="mt-6 flex-1 space-y-2.5 text-sm text-ink">
               {p.features.map((f) => (
@@ -98,9 +53,9 @@ export function PlanGrid({
                   {current ? "Current plan" : p.cta}
                 </Button>
               ) : (
-                <Link to={p.monthly === 0 ? "/contact" : registerTo} className="block">
-                  <Button className="w-full bg-black text-white hover:bg-zinc-900" variant="dark">
-                    {p.cta}
+                <Link to={`${registerTo.split("?")[0]}?plan=${p.id}`} className="block">
+                  <Button type="button" className="w-full bg-black text-white hover:bg-zinc-900" variant="dark">
+                    Get started
                   </Button>
                 </Link>
               )}

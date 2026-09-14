@@ -1,5 +1,5 @@
 import { useState, type ReactNode } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "../../components/ui/Button";
 import { Field, Input, Select, Textarea } from "../../components/ui/Field";
 import { Logo } from "../../components/brand/Logo";
@@ -21,7 +21,9 @@ export function OnboardingPage() {
   return (
     <div className="min-h-screen bg-paper">
       <header className="border-b border-line bg-white px-6 py-4">
-        <Logo />
+        <Link to="/">
+          <Logo />
+        </Link>
       </header>
       <div className="mx-auto max-w-2xl px-4 py-10">
         <div className="mb-8 flex gap-1">
@@ -141,6 +143,8 @@ export function OnboardingPage() {
               className="mt-8"
               size="lg"
               onClick={() => {
+                const picked = sessionStorage.getItem("bookly.plan");
+                if (picked) setOrg({ ...org, plan: picked });
                 completeOnboarding();
                 nav("/app/dashboard");
               }}

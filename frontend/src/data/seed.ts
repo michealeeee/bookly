@@ -39,7 +39,7 @@ export const organisation: Organisation = {
   taxRegistered: true,
   taxId: "C0009876541",
   vatRate: 15,
-  plan: "Professional",
+  plan: "Business",
   logoText: "AT",
 };
 
@@ -277,11 +277,11 @@ export const audit: AuditEvent[] = [
 ];
 
 export const tenants: OrgTenant[] = [
-  { id: "tn1", name: "Apex Trade Limited", plan: "Professional", users: 12, mrr: 129, status: "Active", country: "Ghana", created: "2025-11-02" },
-  { id: "tn2", name: "Sunrise Clinics", plan: "Business", users: 34, mrr: 249, status: "Active", country: "Kenya", created: "2026-01-18" },
+  { id: "tn1", name: "Apex Trade Limited", plan: "Business", users: 12, mrr: 129, status: "Active", country: "Ghana", created: "2025-11-02" },
+  { id: "tn2", name: "Sunrise Clinics", plan: "Professional", users: 34, mrr: 249, status: "Active", country: "Kenya", created: "2026-01-18" },
   { id: "tn3", name: "Harbor NGO", plan: "Starter", users: 4, mrr: 49, status: "Trial", country: "Nigeria", created: "2026-08-22" },
-  { id: "tn4", name: "Northline Logistics", plan: "Professional", users: 18, mrr: 129, status: "Past due", country: "Ghana", created: "2026-03-09" },
-  { id: "tn5", name: "Lattice Partners", plan: "Enterprise", users: 80, mrr: 890, status: "Active", country: "South Africa", created: "2025-06-14" },
+  { id: "tn4", name: "Northline Logistics", plan: "Business", users: 18, mrr: 129, status: "Past due", country: "Ghana", created: "2026-03-09" },
+  { id: "tn5", name: "Lattice Partners", plan: "Professional", users: 80, mrr: 249, status: "Active", country: "South Africa", created: "2025-06-14" },
 ];
 
 export const resources = [

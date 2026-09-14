@@ -5,10 +5,10 @@ import { Logo } from "../brand/Logo";
 import { useAuth } from "../../store/AuthContext";
 import { useBook } from "../../store/BookContext";
 import { initials } from "../../lib/format";
-import { appNav, bottomNav } from "./nav";
+import { bottomNav, primaryNav } from "./nav";
 
 const mobileTabs = [
-  { to: "/app/dashboard", label: "Home", icon: LayoutDashboard },
+  { to: "/app/dashboard", label: "Dashboard", icon: LayoutDashboard },
   { to: "/app/invoices", label: "Invoices", icon: FileText },
   { to: "/app/expenses", label: "Expenses", icon: Wallet },
   { to: "/app/banking", label: "Bank", icon: Landmark },
@@ -29,7 +29,9 @@ export function AppShell() {
     <>
       <div className="flex items-start justify-between px-4 py-4">
         <div className="min-w-0">
-          <Logo inverted />
+          <Link to="/app/dashboard" onClick={() => setDrawer(false)}>
+            <Logo inverted />
+          </Link>
           <p className="mt-3 truncate text-xs text-white/50">{org.name}</p>
         </div>
         <button className="rounded-lg p-2 text-white/70 md:hidden" onClick={() => setDrawer(false)} aria-label="Close menu">
@@ -37,25 +39,21 @@ export function AppShell() {
         </button>
       </div>
       <div className="min-h-0 flex-1 overflow-y-auto px-3 pb-4">
-        {appNav.map((g) => (
-          <div key={g.title} className="mb-4">
-            <p className="px-2 pb-1 text-[11px] font-semibold uppercase tracking-wider text-white/35">{g.title}</p>
-            {g.items.map((item) => (
-              <NavLink
-                key={item.to}
-                to={item.to}
-                onClick={() => setDrawer(false)}
-                className={({ isActive }) =>
-                  `mb-0.5 flex min-h-10 items-center gap-2.5 rounded-lg px-2.5 py-1.5 text-[13px] ${
-                    isActive ? "bg-white/10 text-white" : "text-white/70 hover:bg-white/5 hover:text-white"
-                  }`
-                }
-              >
-                <item.icon className="h-4 w-4 shrink-0" />
-                {item.label}
-              </NavLink>
-            ))}
-          </div>
+        {primaryNav.map((item) => (
+          <NavLink
+            key={item.to}
+            to={item.to}
+            end={item.to === "/app/dashboard"}
+            onClick={() => setDrawer(false)}
+            className={({ isActive }) =>
+              `mb-0.5 flex min-h-11 items-center gap-3 rounded-lg px-3 text-sm ${
+                isActive ? "bg-white/10 text-white" : "text-white/70 hover:bg-white/5 hover:text-white"
+              }`
+            }
+          >
+            <item.icon className="h-4 w-4 shrink-0 opacity-80" />
+            {item.label}
+          </NavLink>
         ))}
       </div>
       <div className="border-t border-white/10 p-3">
@@ -70,6 +68,13 @@ export function AppShell() {
             {item.label}
           </NavLink>
         ))}
+        <Link
+          to="/"
+          onClick={() => setDrawer(false)}
+          className="mb-2 flex min-h-10 items-center rounded-lg px-2.5 py-1.5 text-[13px] text-white/50 hover:text-white/80"
+        >
+          Landing page
+        </Link>
         <div className="mt-2 flex items-center gap-2 rounded-xl bg-white/5 px-2 py-2">
           <div
             className="grid h-8 w-8 shrink-0 place-items-center rounded-full text-xs font-semibold text-navy"

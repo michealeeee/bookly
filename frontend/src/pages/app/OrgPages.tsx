@@ -8,7 +8,7 @@ import { PageHeader } from "../../components/ui/PageHeader";
 import { useBook } from "../../store/BookContext";
 import { useToast } from "../../store/ToastContext";
 import { plans } from "../../data/pricing";
-import { BillingToggle, PlanGrid } from "../../components/marketing/PlanGrid";
+import { PlanGrid } from "../../components/marketing/PlanGrid";
 import { Modal } from "../../components/ui/Modal";
 import { useState } from "react";
 
@@ -265,7 +265,6 @@ export function HelpPage() {
 export function SubscriptionPage() {
   const { org, setOrg } = useBook();
   const { toast } = useToast();
-  const [yearly, setYearly] = useState(true);
   const current = plans.find((p) => p.name === org.plan) ?? plans[1];
   return (
     <div>
@@ -278,17 +277,11 @@ export function SubscriptionPage() {
         <h2 className="mt-1 text-2xl font-semibold text-navy">{org.name}</h2>
         <p className="mt-2 text-sm text-slate">
           On <span className="font-semibold text-navy">{current.name}</span>
-          {current.monthly > 0
-            ? ` · ${yearly ? `$${current.yearly}/mo billed yearly` : `$${current.monthly}/mo`} · renews 14 Oct 2026`
-            : " · custom agreement"}
+          {` · $${current.monthly}/mo billed monthly · renews 14 Oct 2026`}
         </p>
         <p className="mt-3 text-sm text-ink">{current.tagline}</p>
       </Card>
-      <div className="mb-8">
-        <BillingToggle yearly={yearly} onChange={setYearly} />
-      </div>
       <PlanGrid
-        yearly={yearly}
         currentPlan={org.plan}
         onSelect={(name) => {
           setOrg({ ...org, plan: name });

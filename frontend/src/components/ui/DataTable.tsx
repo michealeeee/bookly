@@ -9,9 +9,9 @@ export function DataTable({
 }) {
   return (
     <div className="overflow-x-auto -mx-3 sm:mx-0">
-      <table className="w-full min-w-[640px] text-left text-sm">
+      <table className="w-full min-w-[28rem] text-left text-sm">
         <thead>
-          <tr className="border-b border-line bg-paper/80 text-xs uppercase tracking-wide text-slate">
+          <tr className="border-b border-line text-xs font-medium uppercase tracking-wide text-slate">
             {columns.map((c) => (
               <th key={c} className="px-4 py-3 font-medium">
                 {c}
@@ -28,7 +28,7 @@ export function DataTable({
             </tr>
           ) : (
             rows.map((cells, i) => (
-              <tr key={i} className="border-b border-line last:border-0 hover:bg-mint/40">
+              <tr key={i} className="border-b border-line last:border-0">
                 {cells.map((cell, j) => (
                   <td key={j} className="px-4 py-3 align-middle text-ink">
                     {cell}

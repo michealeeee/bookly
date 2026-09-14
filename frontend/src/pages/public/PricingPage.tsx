@@ -1,20 +1,17 @@
-import { useState } from "react";
 import { ShieldCheck, Timer, Wallet } from "lucide-react";
 import { comparisonRows, plans, pricingPromises } from "../../data/pricing";
-import { BillingToggle, PlanGrid } from "../../components/marketing/PlanGrid";
+import { PlanGrid } from "../../components/marketing/PlanGrid";
 import { MarketingPage } from "./MarketingPage";
 
 export function PricingPage() {
-  const [yearly, setYearly] = useState(true);
   return (
     <MarketingPage
       kicker="Pricing"
       title="Simple plans. Serious books."
-      lead="From the first invoice to a board-ready close. Start on Professional — most organisations never look back. Yearly billing saves about 23%."
+      lead="From the first invoice to a board-ready close. Three monthly plans — Starter, Business, and Professional."
     >
-      <BillingToggle yearly={yearly} onChange={setYearly} />
-      <div className="mt-10">
-        <PlanGrid yearly={yearly} />
+      <div className="mt-2">
+        <PlanGrid />
       </div>
 
       <div className="mt-14 grid gap-4 md:grid-cols-3">
@@ -34,7 +31,7 @@ export function PricingPage() {
       <p className="mt-1 text-sm text-slate">Every plan includes Bookly branding, encryption in transit, and a workspace you can export.</p>
       <p className="mt-1 text-xs text-slate">Swipe sideways to compare every plan.</p>
       <div className="mt-4 overflow-x-auto rounded-2xl border border-line bg-white">
-        <table className="w-full min-w-[760px] text-sm">
+        <table className="w-full min-w-[560px] text-sm">
           <thead>
             <tr className="border-b border-line bg-paper text-left">
               <th className="p-3 font-medium text-slate">Capability</th>
@@ -50,9 +47,8 @@ export function PricingPage() {
               <tr key={r.name} className="border-b border-line last:border-0">
                 <td className="p-3 font-medium text-navy">{r.name}</td>
                 <td className="p-3">{r.starter}</td>
-                <td className="p-3">{r.professional}</td>
                 <td className="p-3">{r.business}</td>
-                <td className="p-3">{r.enterprise}</td>
+                <td className="p-3">{r.professional}</td>
               </tr>
             ))}
           </tbody>

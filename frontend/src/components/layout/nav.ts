@@ -35,11 +35,16 @@ export interface NavGroup {
   items: NavItem[];
 }
 
+export const primaryNav: NavItem[] = [
+  { to: "/app/dashboard", label: "Dashboard", icon: LayoutDashboard },
+  { to: "/app/invoices", label: "Invoices", icon: FileText },
+  { to: "/app/customers", label: "Customers", icon: Users },
+  { to: "/app/expenses", label: "Expenses", icon: Wallet },
+  { to: "/app/banking", label: "Bank", icon: Landmark },
+  { to: "/app/reports/profit-loss", label: "Reports", icon: FileSpreadsheet },
+];
+
 export const appNav: NavGroup[] = [
-  {
-    title: "Overview",
-    items: [{ to: "/app/dashboard", label: "Dashboard", icon: LayoutDashboard }],
-  },
   {
     title: "Accounting",
     items: [
