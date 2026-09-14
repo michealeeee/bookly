@@ -1,0 +1,74 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Instrument Serif", ui-serif, Georgia, serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  --color-navy: #071526;
+  --color-navy-2: #0c2340;
+  --color-ink: #122033;
+  --color-slate: #5b6b7c;
+  --color-line: #e4e9ef;
+  --color-paper: #f5f7fa;
+  --color-card: #ffffff;
+  --color-teal: #0e9f90;
+  --color-teal-2: #0b7f73;
+  --color-mint: #e7f7f4;
+  --color-gold: #c9a227;
+  --color-gain: #128a63;
+  --color-loss: #c2413b;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  background: #f5f7fa;
+  color: #122033;
+  font-family: var(--font-sans);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+::selection {
+  background: #c8efe9;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: #c9d3de;
+  border-radius: 999px;
+}
+
+input,
+select,
+textarea,
+button {
+  font-family: inherit;
+}
+
+.num {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+.display {
+  font-family: var(--font-display);
+}
+
+.bg-grid {
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
