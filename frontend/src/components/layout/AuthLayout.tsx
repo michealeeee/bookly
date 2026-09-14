@@ -3,8 +3,8 @@ import { Logo } from "../brand/Logo";
 
 export function AuthLayout() {
   return (
-    <div className="grid min-h-screen lg:grid-cols-2">
-      <div className="relative hidden overflow-hidden bg-navy p-10 text-white lg:flex lg:flex-col">
+    <div className="grid min-h-dvh md:grid-cols-2">
+      <div className="relative hidden overflow-hidden bg-navy p-8 text-white md:flex md:flex-col lg:p-10">
         <Logo inverted />
         <div className="relative z-10 my-auto max-w-md">
           <p className="display text-4xl leading-tight">Books that stay as clear as your strategy.</p>
@@ -15,8 +15,8 @@ export function AuthLayout() {
         <p className="text-sm text-white/40">Smart bookkeeping for smarter businesses.</p>
         <div className="bg-grid pointer-events-none absolute inset-0 opacity-40" />
       </div>
-      <div className="flex flex-col bg-paper px-4 py-8">
-        <div className="mb-8 lg:hidden">
+      <div className="flex flex-col bg-paper px-4 py-8 sm:px-6">
+        <div className="mb-8 md:hidden">
           <Link to="/">
             <Logo />
           </Link>

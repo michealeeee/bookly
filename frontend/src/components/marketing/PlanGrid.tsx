@@ -13,26 +13,24 @@ export function BillingToggle({
 }) {
   return (
     <div className="flex flex-col items-center gap-3">
-      <div className="inline-flex rounded-full bg-white p-1 shadow-sm ring-1 ring-line">
+      <div className="inline-flex max-w-full flex-wrap justify-center rounded-full bg-white p-1 shadow-sm ring-1 ring-line">
         <button
           type="button"
-          className={cn("rounded-full px-5 py-2 text-sm font-medium", !yearly ? "bg-navy text-white" : "text-slate")}
+          className={cn("rounded-full px-4 py-2 text-sm font-medium sm:px-5", !yearly ? "bg-navy text-white" : "text-slate")}
           onClick={() => onChange(false)}
         >
           Monthly
         </button>
         <button
           type="button"
-          className={cn("rounded-full px-5 py-2 text-sm font-medium", yearly ? "bg-navy text-white" : "text-slate")}
+          className={cn("rounded-full px-4 py-2 text-sm font-medium sm:px-5", yearly ? "bg-navy text-white" : "text-slate")}
           onClick={() => onChange(true)}
         >
           Yearly
-          <span className="ml-2 rounded-full bg-teal/15 px-2 py-0.5 text-xs text-teal-2">
-            Save {billing.yearlyDiscountPct}%
-          </span>
+          <span className="ml-2 rounded-full bg-teal/15 px-2 py-0.5 text-xs text-teal-2">Save {billing.yearlyDiscountPct}%</span>
         </button>
       </div>
-      <p className="text-sm text-slate">
+      <p className="px-4 text-center text-sm text-slate">
         {billing.trialDays}-day free trial on paid plans · billed in {billing.currency}
       </p>
     </div>
@@ -51,7 +49,7 @@ export function PlanGrid({
   registerTo?: string;
 }) {
   return (
-    <div className="grid gap-5 lg:grid-cols-4">
+    <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-4">
       {plans.map((p) => {
         const price = yearly ? p.yearly : p.monthly;
         const current = currentPlan === p.name;
@@ -59,7 +57,7 @@ export function PlanGrid({
         return (
           <article
             key={p.id}
-            className="relative flex flex-col rounded-3xl border border-line bg-white p-6 shadow-sm"
+            className="relative flex flex-col rounded-3xl border border-line bg-white p-5 pt-6 shadow-sm sm:p-6"
           >
             {p.highlight && (
               <span className="absolute -top-3 left-1/2 flex -translate-x-1/2 items-center gap-1 rounded-full bg-navy px-3 py-1 text-xs font-semibold text-white">
@@ -69,7 +67,7 @@ export function PlanGrid({
             )}
             <p className="text-xs font-semibold uppercase tracking-wider text-teal">{p.audience}</p>
             <h3 className="mt-2 text-2xl font-semibold text-navy">{p.name}</h3>
-            <p className="mt-2 min-h-[3.2rem] text-sm leading-relaxed text-slate">{p.tagline}</p>
+            <p className="mt-2 text-sm leading-relaxed text-slate sm:min-h-[3.2rem]">{p.tagline}</p>
             <div className="mt-5">
               {p.monthly === 0 ? (
                 <p className="text-3xl font-semibold text-navy">Let’s talk</p>

@@ -50,22 +50,24 @@ export function HomePage() {
     <div>
       <section className="relative overflow-hidden">
         <div className="bg-grid pointer-events-none absolute inset-0" />
-        <div className="relative mx-auto grid max-w-6xl items-center gap-12 px-4 py-16 lg:grid-cols-2 lg:py-24">
+        <div className="relative mx-auto grid max-w-6xl items-center gap-8 px-4 py-10 sm:px-6 sm:py-16 lg:grid-cols-2 lg:gap-12 lg:py-24">
           <div>
             <p className="text-sm font-medium uppercase tracking-[0.2em] text-teal">Bookly</p>
-            <h1 className="display mt-3 text-4xl leading-tight text-white sm:text-5xl lg:text-[3.4rem]">
+            <h1 className="display mt-3 text-[2rem] leading-tight text-white sm:text-5xl lg:text-[3.4rem]">
               Bookkeeping Made Simple. Business Made Smarter.
             </h1>
-            <p className="mt-5 max-w-lg text-lg text-white/70">
+            <p className="mt-5 max-w-lg text-base text-white/70 sm:text-lg">
               Bookly helps organisations manage their finances, invoices, expenses, payments and financial reports in
               one simple platform.
             </p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Link to="/register">
-                <Button size="lg">Get Started</Button>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+              <Link to="/register" className="sm:w-auto">
+                <Button size="lg" className="w-full sm:w-auto">
+                  Get Started
+                </Button>
               </Link>
-              <Link to="/how-it-works">
-                <Button size="lg" variant="outline">
+              <Link to="/how-it-works" className="sm:w-auto">
+                <Button size="lg" variant="outline" className="w-full sm:w-auto">
                   See How It Works
                 </Button>
               </Link>
@@ -75,10 +77,10 @@ export function HomePage() {
         </div>
       </section>
 
-      <section id="features" className="bg-paper py-20 text-ink">
-        <div className="mx-auto max-w-6xl px-4">
+      <section id="features" className="bg-paper py-12 text-ink sm:py-20">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <p className="text-sm font-semibold text-teal">Features</p>
-          <h2 className="mt-2 text-3xl font-semibold text-navy">Everything finance teams actually use.</h2>
+          <h2 className="mt-2 text-2xl font-semibold text-navy sm:text-3xl">Everything finance teams actually use.</h2>
           <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {features.map((f) => (
               <div key={f.title} className="rounded-2xl border border-line bg-white p-5 shadow-sm">
@@ -91,11 +93,11 @@ export function HomePage() {
         </div>
       </section>
 
-      <section className="bg-white py-20 text-ink">
-        <div className="mx-auto max-w-6xl px-4">
+      <section className="bg-white py-12 text-ink sm:py-20">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <p className="text-sm font-semibold text-teal">How Bookly works</p>
-          <h2 className="mt-2 text-3xl font-semibold text-navy">Four steps from signup to insight.</h2>
-          <div className="mt-10 grid gap-4 md:grid-cols-4">
+          <h2 className="mt-2 text-2xl font-semibold text-navy sm:text-3xl">Four steps from signup to insight.</h2>
+          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {steps.map((s) => (
               <div key={s.n} className="rounded-2xl bg-paper p-5">
                 <p className="display text-3xl text-teal">{s.n}</p>
@@ -107,10 +109,10 @@ export function HomePage() {
         </div>
       </section>
 
-      <section className="bg-navy-2 py-20">
-        <div className="mx-auto max-w-6xl px-4">
+      <section className="bg-navy-2 py-12 sm:py-20">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <p className="text-sm font-semibold text-teal">Solutions</p>
-          <h2 className="mt-2 text-3xl font-semibold text-white">Built for how organisations actually operate.</h2>
+          <h2 className="mt-2 text-2xl font-semibold text-white sm:text-3xl">Built for how organisations actually operate.</h2>
           <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
             {solutions.map((s) => (
               <Link
@@ -125,8 +127,8 @@ export function HomePage() {
         </div>
       </section>
 
-      <section className="bg-mint py-16 text-center text-navy">
-        <h2 className="text-3xl font-semibold">Ready to close the books with confidence?</h2>
+      <section className="bg-mint px-4 py-12 text-center text-navy sm:py-16">
+        <h2 className="text-2xl font-semibold sm:text-3xl">Ready to close the books with confidence?</h2>
         <p className="mt-2 text-slate">Start a workspace in under two minutes. No credit card in this demo.</p>
         <Link to="/register" className="mt-6 inline-block">
           <Button size="lg">Get Started</Button>

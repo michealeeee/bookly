@@ -32,6 +32,7 @@ export function PricingPage() {
 
       <h3 className="mt-16 text-xl font-semibold text-navy">Compare at a glance</h3>
       <p className="mt-1 text-sm text-slate">Every plan includes Bookly branding, encryption in transit, and a workspace you can export.</p>
+      <p className="mt-1 text-xs text-slate">Swipe sideways to compare every plan.</p>
       <div className="mt-4 overflow-x-auto rounded-2xl border border-line bg-white">
         <table className="w-full min-w-[760px] text-sm">
           <thead>

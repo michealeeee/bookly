@@ -214,7 +214,7 @@ export function InvoiceEditorPage({ mode }: { mode: "new" | "view" }) {
   };
 
   return (
-    <div className="grid gap-6 lg:grid-cols-2">
+    <div className="grid gap-6 xl:grid-cols-2">
       <div>
         <PageHeader title={mode === "new" ? "Create invoice" : invNo} />
         <Card className="space-y-4 p-5">

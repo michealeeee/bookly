@@ -5,7 +5,7 @@ import { Badge } from "../ui/Badge";
 
 export function HeroDashboardPreview() {
   return (
-    <div className="rounded-3xl border border-white/10 bg-white/[0.06] p-4 shadow-2xl shadow-black/30 backdrop-blur">
+    <div className="rounded-2xl border border-white/10 bg-white/[0.06] p-3 shadow-2xl shadow-black/30 backdrop-blur sm:rounded-3xl sm:p-4">
       <div className="mb-4 flex items-center justify-between">
         <p className="text-sm font-medium text-white">Apex Trade · September</p>
         <span className="rounded-full bg-teal/20 px-2 py-0.5 text-xs text-teal">Live preview</span>
@@ -19,7 +19,7 @@ export function HeroDashboardPreview() {
         ].map(([k, v]) => (
           <div key={k} className="rounded-xl bg-navy-2/80 p-3">
             <p className="text-[11px] text-white/50">{k}</p>
-            <p className="mt-1 text-sm font-semibold text-white num">{v}</p>
+            <p className="mt-1 truncate text-xs font-semibold text-white num sm:text-sm">{v}</p>
           </div>
         ))}
       </div>
@@ -42,7 +42,7 @@ export function HeroDashboardPreview() {
           </AreaChart>
         </ResponsiveContainer>
       </div>
-      <div className="mt-3 space-y-2">
+      <div className="mt-3 hidden space-y-2 sm:block">
         {transactions.slice(0, 3).map((t) => (
           <div key={t.id} className="flex items-center justify-between rounded-lg bg-white/5 px-3 py-2 text-xs">
             <span className="truncate text-white/80">{t.description}</span>

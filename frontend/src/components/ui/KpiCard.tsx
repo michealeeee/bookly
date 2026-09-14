@@ -17,7 +17,7 @@ export function KpiCard({
   return (
     <Card className="p-5">
       <p className="text-sm text-slate">{label}</p>
-      <p className="mt-2 text-2xl font-semibold tracking-tight text-navy num">
+      <p className="mt-2 break-all text-xl font-semibold tracking-tight text-navy num sm:text-2xl">
         {prefix}
         {money(value)}
       </p>

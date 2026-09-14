@@ -42,7 +42,7 @@ export function DashboardPage() {
   return (
     <div>
       <div className="mb-6">
-        <h1 className="text-2xl font-semibold text-navy">
+        <h1 className="text-xl font-semibold text-navy sm:text-2xl">
           {hello}, {user?.name.split(" ")[0] ?? "there"}
         </h1>
         <p className="text-sm text-slate">Here's what's happening with your finances today.</p>
@@ -70,7 +70,7 @@ export function DashboardPage() {
       <div className="mt-6 grid gap-4 xl:grid-cols-3">
         <Card className="xl:col-span-2">
           <CardHeader title="Revenue vs Expenses" subtitle="Monthly" />
-          <div className="h-72 p-4">
+          <div className="h-52 p-2 sm:h-72 sm:p-4">
             <ResponsiveContainer>
               <BarChart data={monthly}>
                 <CartesianGrid stroke="#e4e9ef" vertical={false} />
@@ -104,7 +104,7 @@ export function DashboardPage() {
       <div className="mt-4 grid gap-4 lg:grid-cols-2">
         <Card>
           <CardHeader title="Cash Flow" subtitle="Money in vs money out" />
-          <div className="h-64 p-4">
+          <div className="h-48 p-3 sm:h-64 sm:p-4">
             <ResponsiveContainer>
               <AreaChart data={monthly}>
                 <CartesianGrid stroke="#e4e9ef" vertical={false} />
@@ -154,7 +154,7 @@ export function DashboardPage() {
         <CardHeader
           title="Recent Transactions"
           action={
-            <div className="flex gap-2">
+            <div className="flex w-full flex-col gap-2 sm:flex-row">
               <SearchBar value={q} onChange={setQ} placeholder="Search" />
               <Button variant="secondary" size="sm" onClick={() => alert("Export simulated (CSV).")}>
                 Export

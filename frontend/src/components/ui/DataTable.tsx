@@ -8,8 +8,8 @@ export function DataTable({
   rows: ReactNode[][];
 }) {
   return (
-    <div className="overflow-x-auto">
-      <table className="w-full min-w-[720px] text-left text-sm">
+    <div className="overflow-x-auto -mx-3 sm:mx-0">
+      <table className="w-full min-w-[640px] text-left text-sm">
         <thead>
           <tr className="border-b border-line bg-paper/80 text-xs uppercase tracking-wide text-slate">
             {columns.map((c) => (

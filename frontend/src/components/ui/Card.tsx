@@ -17,12 +17,12 @@ export function Card({
 
 export function CardHeader({ title, action, subtitle }: { title: string; subtitle?: string; action?: ReactNode }) {
   return (
-    <div className="flex items-start justify-between gap-4 border-b border-line px-5 py-4">
-      <div>
+    <div className="flex flex-col gap-3 border-b border-line px-4 py-4 sm:flex-row sm:items-start sm:justify-between sm:gap-4 sm:px-5">
+      <div className="min-w-0">
         <h3 className="text-base font-semibold text-navy">{title}</h3>
         {subtitle && <p className="mt-0.5 text-sm text-slate">{subtitle}</p>}
       </div>
-      {action}
+      {action && <div className="w-full min-w-0 sm:w-auto">{action}</div>}
     </div>
   );
 }
