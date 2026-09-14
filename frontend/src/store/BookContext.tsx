@@ -21,6 +21,7 @@ interface BookState {
   setOrg: (o: Organisation) => void;
   transactions: Transaction[];
   addTransaction: (t: Omit<Transaction, "id">) => Promise<void>;
+  addTransactions: (t: Omit<Transaction, "id">[]) => Promise<void>;
   updateTransaction: (id: string, t: Partial<Transaction>) => Promise<void>;
   deleteTransaction: (id: string) => Promise<void>;
   journals: JournalEntry[];
@@ -69,6 +70,10 @@ export function BookProvider({ children }: { children: ReactNode }) {
       async addTransaction(t) {
         await wait();
         setTransactions((xs) => [{ ...t, id: uid("tx") }, ...xs]);
+      },
+      async addTransactions(items) {
+        await wait();
+        setTransactions((xs) => [...items.map((t) => ({ ...t, id: uid("tx") })), ...xs]);
       },
       async updateTransaction(id, t) {
         await wait();

@@ -9,6 +9,8 @@ import { Field, Input, Select, Textarea } from "../../components/ui/Field";
 import { Modal } from "../../components/ui/Modal";
 import { PageHeader, SearchBar } from "../../components/ui/PageHeader";
 import { fmtDate, money, todayIso, uid } from "../../lib/format";
+import type { SalesPeriod } from "../../lib/sales";
+import { SalesPeriodChart, SalesPulse } from "../../components/sales/SalesPulse";
 import { useBook } from "../../store/BookContext";
 import { useToast } from "../../store/ToastContext";
 import type { Customer, Invoice, LineItem } from "../../types";
@@ -139,17 +141,25 @@ function PartyForm({
 export function InvoicesPage() {
   const { invoices } = useBook();
   const [q, setQ] = useState("");
+  const [period, setPeriod] = useState<SalesPeriod>("weekly");
   const rows = invoices.filter((i) => `${i.number} ${i.customer}`.toLowerCase().includes(q.toLowerCase()));
   return (
     <div>
       <PageHeader
         title="Invoices"
+        subtitle="Daily, weekly and monthly sales are summed from sent, paid, partially paid and overdue invoices. Drafts are excluded."
         actions={
           <Link to="/app/invoices/new">
             <Button>Create invoice</Button>
           </Link>
         }
       />
+      <div className="mb-6">
+        <SalesPulse invoices={invoices} />
+      </div>
+      <Card className="mb-6 p-4">
+        <SalesPeriodChart invoices={invoices} period={period} onPeriod={setPeriod} />
+      </Card>
       <Card className="p-4">
         <SearchBar value={q} onChange={setQ} />
         <div className="mt-4">

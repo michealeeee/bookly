@@ -65,6 +65,7 @@ export interface Transaction {
   amount: number;
   status: TxStatus;
   reference?: string;
+  period: "daily" | "weekly";
 }
 
 export interface JournalLine {

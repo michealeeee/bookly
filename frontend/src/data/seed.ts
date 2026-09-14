@@ -138,16 +138,18 @@ export const accounts: Account[] = [
 ];
 
 export const transactions: Transaction[] = [
-  { id: "tx1", date: "2026-09-12", description: "Invoice INV-1042 — Meridian Retail", account: "Sales Revenue", category: "Sales", type: "Income", amount: 18450, status: "Cleared" },
-  { id: "tx2", date: "2026-09-11", description: "Office rent — September", account: "Rent", category: "Facilities", type: "Expense", amount: -12000, status: "Cleared" },
-  { id: "tx3", date: "2026-09-10", description: "Customer payment — Harbor Foods", account: "Bank", category: "Receipts", type: "Deposit", amount: 9200, status: "Reconciled" },
-  { id: "tx4", date: "2026-09-09", description: "Fuel & logistics — Kumasi run", account: "Transport", category: "Operations", type: "Expense", amount: -1860, status: "Pending" },
-  { id: "tx5", date: "2026-09-08", description: "Inventory restock — Tema warehouse", account: "Inventory", category: "COGS", type: "Expense", amount: -6400, status: "Cleared" },
-  { id: "tx6", date: "2026-09-07", description: "Service retainer — Kofi & Partners", account: "Service Revenue", category: "Services", type: "Income", amount: 4500, status: "Cleared" },
-  { id: "tx7", date: "2026-09-06", description: "Transfer to savings reserve", account: "Bank", category: "Transfer", type: "Transfer", amount: -5000, status: "Reconciled" },
-  { id: "tx8", date: "2026-09-05", description: "Electricity — ECG Accra", account: "Utilities", category: "Facilities", type: "Expense", amount: -1420, status: "Unmatched" },
-  { id: "tx9", date: "2026-09-04", description: "Payroll net — August cycle", account: "Salaries", category: "Payroll", type: "Withdrawal", amount: -28600, status: "Cleared" },
-  { id: "tx10", date: "2026-09-03", description: "Year-end rounding adjustment", account: "Retained Earnings", category: "Adjustment", type: "Adjustment", amount: 120, status: "Pending" },
+  { id: "tx1", date: "2026-09-12", description: "Invoice INV-1042 — Meridian Retail", account: "Sales Revenue", category: "Sales", type: "Income", amount: 18450, status: "Cleared", period: "daily" },
+  { id: "tx2", date: "2026-09-11", description: "Office rent — September", account: "Rent", category: "Facilities", type: "Expense", amount: -12000, status: "Cleared", period: "weekly" },
+  { id: "tx3", date: "2026-09-10", description: "Customer payment — Harbor Foods", account: "Bank", category: "Receipts", type: "Deposit", amount: 9200, status: "Reconciled", period: "daily" },
+  { id: "tx4", date: "2026-09-09", description: "Fuel & logistics — Kumasi run", account: "Transport", category: "Operations", type: "Expense", amount: -1860, status: "Pending", period: "daily" },
+  { id: "tx5", date: "2026-09-08", description: "Inventory restock — Tema warehouse", account: "Inventory", category: "COGS", type: "Expense", amount: -6400, status: "Cleared", period: "daily" },
+  { id: "tx6", date: "2026-09-07", description: "Service retainer — Kofi & Partners", account: "Service Revenue", category: "Services", type: "Income", amount: 4500, status: "Cleared", period: "daily" },
+  { id: "tx7", date: "2026-09-06", description: "Transfer to savings reserve", account: "Bank", category: "Transfer", type: "Transfer", amount: -5000, status: "Reconciled", period: "daily" },
+  { id: "tx8", date: "2026-09-05", description: "Electricity — ECG Accra", account: "Utilities", category: "Facilities", type: "Expense", amount: -1420, status: "Unmatched", period: "daily" },
+  { id: "tx9", date: "2026-09-01", description: "Payroll net — week of 1 Sep", account: "Salaries", category: "Payroll", type: "Withdrawal", amount: -28600, status: "Cleared", period: "weekly" },
+  { id: "tx10", date: "2026-09-03", description: "Year-end rounding adjustment", account: "Retained Earnings", category: "Adjustment", type: "Adjustment", amount: 120, status: "Pending", period: "daily" },
+  { id: "tx11", date: "2026-09-08", description: "Counter sales — week of 8 Sep", account: "Sales Revenue", category: "Sales", type: "Income", amount: 18600, status: "Cleared", period: "weekly" },
+  { id: "tx12", date: "2026-09-14", description: "Same-day walk-in sales", account: "Sales Revenue", category: "Sales", type: "Income", amount: 3200, status: "Cleared", period: "daily" },
 ];
 
 export const journals: JournalEntry[] = [
@@ -201,6 +203,16 @@ export const invoices: Invoice[] = [
   { id: "inv3", number: "INV-1040", customerId: "c4", customer: "Northline Logistics", date: "2026-08-20", dueDate: "2026-09-20", amount: 10770, status: "Sent", items: items("Fleet maintenance kit", 6, 1560), notes: "" },
   { id: "inv4", number: "INV-1039", customerId: "c3", customer: "Kofi & Partners", date: "2026-08-12", dueDate: "2026-08-26", amount: 4500, status: "Paid", items: items("Monthly retainer", 1, 3913), notes: "Thank you." },
   { id: "inv5", number: "INV-1038", customerId: "c1", customer: "Meridian Retail Ltd", date: "2026-07-30", dueDate: "2026-08-13", amount: 2200, status: "Draft", items: items("Promotional display", 2, 957), notes: "" },
+  { id: "inv6", number: "INV-1043", customerId: "c2", customer: "Harbor Foods", date: "2026-09-08", dueDate: "2026-09-22", amount: 6400, status: "Paid", items: items("Dry goods restock", 8, 696), notes: "" },
+  { id: "inv7", number: "INV-1044", customerId: "c1", customer: "Meridian Retail Ltd", date: "2026-09-09", dueDate: "2026-09-23", amount: 11200, status: "Sent", items: items("Weekend wholesale pack", 16, 609), notes: "" },
+  { id: "inv8", number: "INV-1045", customerId: "c4", customer: "Northline Logistics", date: "2026-09-10", dueDate: "2026-09-24", amount: 7800, status: "Paid", items: items("Spare parts kit", 4, 1696), notes: "" },
+  { id: "inv9", number: "INV-1046", customerId: "c3", customer: "Kofi & Partners", date: "2026-09-11", dueDate: "2026-09-25", amount: 3600, status: "Sent", items: items("Advisory hours", 12, 261), notes: "" },
+  { id: "inv10", number: "INV-1047", customerId: "c2", customer: "Harbor Foods", date: "2026-09-12", dueDate: "2026-09-26", amount: 9100, status: "Paid", items: items("Cold-chain top-up", 1, 7913), notes: "" },
+  { id: "inv11", number: "INV-1048", customerId: "c1", customer: "Meridian Retail Ltd", date: "2026-09-13", dueDate: "2026-09-27", amount: 15400, status: "Sent", items: items("Saturday market run", 20, 670), notes: "" },
+  { id: "inv12", number: "INV-1049", customerId: "c4", customer: "Northline Logistics", date: "2026-09-14", dueDate: "2026-09-28", amount: 12850, status: "Sent", items: items("Tyre set + labour", 5, 2235), notes: "" },
+  { id: "inv13", number: "INV-1050", customerId: "c3", customer: "Kofi & Partners", date: "2026-09-14", dueDate: "2026-09-28", amount: 4200, status: "Paid", items: items("Same-day consulting", 6, 609), notes: "" },
+  { id: "inv14", number: "INV-1037", customerId: "c2", customer: "Harbor Foods", date: "2026-09-03", dueDate: "2026-09-17", amount: 5100, status: "Paid", items: items("Midweek delivery", 3, 1478), notes: "" },
+  { id: "inv15", number: "INV-1036", customerId: "c1", customer: "Meridian Retail Ltd", date: "2026-09-05", dueDate: "2026-09-19", amount: 8700, status: "Paid", items: items("Shelf refill", 10, 757), notes: "" },
 ];
 
 export const quotations: Quotation[] = [
